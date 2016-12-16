@@ -1,0 +1,40 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\newcommand{\bm}[1]{% inline column vector
+	\begin{bmatrix}#1\end{bmatrix}%
+}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW5 Q3 - CS450}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.3in
+
+\textit{In general, is it possible to interpolate $n$ data points by a piecewise quadratic polynomial, with knots at the given data points, such that the interpolant is: (In each case, if the answer is "yes," explain why, and if the answer is "no," give the maximum value for $n$ for which it is possible.)}
+
+\section*{Once continuously differentiable?}
+A piecewise continuous quadratic polynomial with $n$ knots (at each data point) has $3(n-1)$ parameters to be determined; $2(n-1)$ must be used to satisfy interpolation requirements leaving $n-1$ free parameters. If we require it to have one continuous derivative we have $n-2$ additional parameters, leaving one free parameter. Therefore we are able to create a once continuously differentiable piecewise quadratic polynomial.
+
+\section*{Twice continuously differentiable?}
+Based on the previous section we know we only have one free parameter, however to ensure a twice continuous differentiable polynomial would require another $n-2$ free parameters; in general we cannot create the desired interpolation polynomial that is twice continuously differentiable.
+
+The maximum value of $n$ for which you could ensure twice continuous differentiability requires the number of free parameters to be equal to the amount required to improve from once to twice continuously differentiable. That is to say we must satisfy: $1 = n-2$, so the maximum $n$ is therefore $n=3$.
+
+\end{document}

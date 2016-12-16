@@ -1,0 +1,52 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\newcommand{\bm}[1]{% inline column vector
+	\begin{bmatrix}#1\end{bmatrix}%
+}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW5 Q2 - CS450}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.3in
+
+\textit{Given the three data points $(-1,1), (0,0), (1,1)$, determine the interpolating polynomial of degree two:}
+
+\section*{Using the monomial basis:}
+In general:
+$$\bm{ 1 & t_1 &t_1^2 \\ 1 & t_2 & t_2^2 \\1 & t_3 & t_3^2}
+    \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} =
+    \begin{bmatrix} y_1\\y_2\\y_3 \end{bmatrix}$$
+    with $p(t) = x_1 + x_2 t + x_3 t^2$
+    
+For our data:
+$$\bm{ 1 & -1 &1 \\ 1 & 0 & 0 \\1 & 1 & 1}
+    \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} =
+    \begin{bmatrix} 1\\0\\1 \end{bmatrix}$$
+    which yields $x = [0 \,  0 \, 1]^T$
+    
+    So our interpolating polynomial is simply $p(t) = t^2$.
+    
+    \section*{Using the Lagrange basis:}
+    \section*{Using the Newton basis:}
+    
+    
+
+\end{document}

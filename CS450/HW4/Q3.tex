@@ -1,0 +1,109 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[small]{titlesec}
+\usepackage{amsfonts}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\newcommand{\bm}[1]{% inline column vector
+	\begin{bmatrix}#1\end{bmatrix}%
+}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW4 Q3 - CS450}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.3in
+
+\textit{Determine the critical points of each of the following functions and characterize each as a minimum, maximum, or saddle point. Also determine whether each function has a global minimum or maximum on $\mathbb{R}^2$.}
+
+\section*{Equation 1: $f(x, y) = x^2 - 4xy + y^2$}
+Gradient:
+$$\nabla f(x,y) = \begin{bmatrix} 2x - 4y \\ 2y - 4x \end{bmatrix}$$
+Hessian:
+$$\mathbf{H}(x,y) = \begin{bmatrix} 2 & -4 \\ -4 & 2 \end{bmatrix}.$$
+
+Critical point $(0, 0)$, saddle point, $\mathbf{H}(0,0)$ is
+indefinite.
+
+No global minimum or maximum.
+
+\section*{Equation 2: $f(x, y) = x^4 - 4xy + y^4$}
+Gradient:
+$$\nabla f(x,y) = \begin{bmatrix} 4x^3 - 4y \\ -4x + 4y^3 \end{bmatrix}$$
+Hessian:
+$$\mathbf{H}(x,y) = \begin{bmatrix} 12x^2 & -4 \\ -4 & 12y^2 \end{bmatrix}.$$
+
+Critical point $(0,0)$, saddle point, $\mathbf{H}(0,0)$ is
+indefinite.
+
+Critical point $(1,1)$, local minimum, $\mathbf{H}(1,1)$ is positive definite.
+
+Critical point $(-1,-1)$, local minimum, $\mathbf{H}(-1,-1)$ is positive definite.
+
+Both local minima are global minima. No global maximum.
+
+\section*{Equation 3: $f(x, y) = 2x^3 - 3x^2 - 6xy(x - y - 1)$}
+Gradient:
+$$\nabla f(x,y) = \begin{bmatrix}
+    6x^2 - 12xy + 6y^2 - 6x + 6y \\
+    -6x^2 + 12xy + 6x \end{bmatrix}$$
+Hessian:    
+$$\mathbf{H}(x,y) = \begin{bmatrix}
+    12x - 12y - 6 & -12x + 12y + 6 \\
+    -12x + 12y + 6 & 12x \end{bmatrix}.$$
+    
+Critical point $(0, 0)$, saddle point, $\mathbf{H}(0, 0)$
+is indefinite.
+
+Critical point $(1, 0)$, local minimum,
+$\mathbf{H}(1, 0)$ is positive definite.
+
+Critical point $(0, -1)$,
+saddle point, $\mathbf{H}(0, -1)$ is indefinite.
+
+Critical point $(-1, -1)$, local maximum, $\mathbf{H}(-1, -1)$ is negative
+definite.
+
+No global minimum or maximum.
+
+\section*{Equation 4: $f(x, y) = (x - y)^4 + x^2 - y^2 -2x + 2y + 1$}
+Gradient:
+$$\nabla f(x, y) = \begin{bmatrix}
+    4(x-y)^3 + 2x - 2 \\
+    -4(x-y)^3 - 2y + 2 \end{bmatrix}$$
+Hessian:
+$$\mathbf{H}(x,y) = \begin{bmatrix}
+    12(x-y)^2 + 2 & -12(x-y)^2 \\
+    -12(x-y)^2 & 12(x-y)^2 - 2 \end{bmatrix}.$$
+    
+Critical point $(1, 1)$, saddle point, $\mathbf{H}(1,1)$ is
+indefinite.
+
+No global minimum or maximum.
+
+ 
+\end{document}
+
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[width=0.6\textwidth]{Unrolled.PNG}
+%\caption{\label{fig:unrolled}"Unrolled" ring, coincident nodes at either end.}
+%\end{figure}
+
+%\bes
+%\alpha_j = (\bm{r\\r^*},\bm{r^*\\r}) / (\bm{0&A\\A^T&0}\bm{p^*\\p},\bm{p^*\\p}) \rightarrow (r,r^*)/(Ap,p^*)
+%\ees

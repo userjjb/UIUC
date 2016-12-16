@@ -1,0 +1,183 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Medium Length Graduate Curriculum Vitae
+% LaTeX Template
+% Version 1.1 (9/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Rensselaer Polytechnic Institute (http://www.rpi.edu/dept/arc/training/latex/resumes/)
+%
+% Important note:
+% This template requires the res.cls file to be in the same directory as the
+% .tex file. The res.cls file provides the resume style used for structuring the
+% document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[margin, 10pt]{res} % Use the res.cls style, the font size can be changed to 11pt or 12pt here
+
+\usepackage{hyperref}
+
+%\setlength{\textwidth}{5.1in} % Text width of the document
+\setlength{\sectionwidth}{1.5in}
+%\addtolength{\topmargin}{-0.5in}
+%\addtolength{\textheight}{1.0in}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND ADDRESS SECTION
+%----------------------------------------------------------------------------------------
+\moveleft.5\hoffset\centerline{\large\bf Josh Bevan}
+\moveleft.5\hoffset\centerline{jjbevan2@illinois.edu}
+\moveleft.5\hoffset\centerline{(774) 329-0343 $\vert$ JoshBevan.com}
+ \vskip 1.5em
+
+%----------------------------------------------------------------------------------------
+
+\begin{resume}
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+\section{EDUCATION}
+{\bf PhD, Computer Science [Scientific Computing group]} \\
+	Univ of Illinois Urbana-Champaign, Urbana, IL, Expected Graduation: 2020;\\
+	Advisor: Prof. Andreas Kloeckner
+	
+{\bf MS in Mechanical Engineering [Thermofluids Concentration]} \\
+	University of Massachusetts, Lowell, MA, 2015;\\
+	\textit{Thesis:} ``Vortex Dominated Flows: A High-order, Conservative Eulerian Simulation Method." Advisor: Prof. D.J. Willis
+
+{\bf Bachelor of Science in Mechanical Engineering}\\
+	University of Massachusetts, Lowell, MA, 2013\\
+	Senior Capstone: ``Autonomous Control of a Hovercraft."
+
+%----------------------------------------------------------------------------------------
+%	RESEARCH
+%----------------------------------------------------------------------------------------
+\section{RESEARCH \\EXPERIENCE}
+{\bf Research Assistantship Appointment} \hfill 2016-\\
+Advisor: Prof. Andreas Kloeckner, Urbana, IL
+\begin{itemize} \itemsep -2pt
+\item Investigated extension of Quadrature-by-Expansion (QBX) integral equation methods to volume-type integrals.
+\item Worked on adapting a Fast Multipole Method (FMM) for unstructured simplicial meshes for finite element-like discretizations
+\end{itemize}
+
+{\bf Application of Discontinuous Galerkin and Vortex Transport\\ Methods to Turbine-Turbine Interaction Simulations} \hfill 2013-2015\\
+Advisor: Prof. D.J. Willis, Lowell, MA
+\begin{itemize} \itemsep -2pt
+\item Implemented a high-order DG solver capable of arbitrary order solution of the Euler equations using Line-DG style approach.
+\item Implemented high-order velocity-vorticity inviscid solver (2D domains) for calculation of velocity fields due to vorticity by means of Biot-Savart integral.
+\item Investigated accuracy effects of integrable singularities on computed velocities for both singular and de-singularized kernels.
+\item Performed validation of method and solver using test cases with known analytical solutions as well as empirical results from literature.
+\end{itemize}
+
+ \vskip -.5em
+
+{\bf A Parallelizable Solver of Inviscid Fluid Flow} \hfill  2013\\
+Special Topics Directed Study with Prof. J.P. Trelles, Lowell, MA
+\begin{itemize} \itemsep -2pt
+\item Developed a potential flow solver via solution of Poisson equation.
+\item Implemented in C with the PETSc library to allow scalable parallelism via MPI.
+\item Measured scaling efficiency for several test cases. Examined effect of mesh/node conditioning on inter-processor communication and effect on scaling.
+\end{itemize}
+
+  \vskip -.5em
+
+{\bf Undergrauate Capstone: Autonomous Hovercraft Project} \hfill  2012 - 2013\\
+Autonomous Robotic Systems Laboratory; Lowell, MA
+\begin{itemize} \itemsep -2pt
+\item Developed closed feedback two-stage linearized control algorithm for navigation.
+\item Implemented real-time control program on micro-controller using IMU output and remote telemetry over serial radio.
+\item Created autonomously navigating hovercraft platform with full servo/brushless motor control via micro-controller.
+\end{itemize}
+
+ \vskip -.5em
+
+{\bf Farnsworth-Hirsch Fusor Project} \hfill  2008 - 2011\\
+Van der Graff Accelerator Lab; Lowell, MA
+\begin{itemize} \itemsep -2pt
+\item Designed and built high vacuum pump systems and chambers.
+\item Modified and built high-voltage and current-regulated power supplies.
+\item Worked with RF and ECR ionization and plasma manipulation techniques.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%	Teaching
+%----------------------------------------------------------------------------------------
+\section{TEACHING}
+{\bf Introduction to Discontinuous Galerkin Methods} \hfill Spring 2015\\
+University of Massachusetts, Lowell, MA
+\begin{itemize} \itemsep -2pt
+\item Developed curriculum for introductory graduate course on DG methods.
+\item Created course materials for curriculum: slides, demonstrative programs/source code.
+\item Performed, recorded, and edited series of 44 video lectures covering course material.
+\item Video lectures available online at: \url{www.bit.ly/IntroDG}
+\end{itemize}
+
+{\bf Programming Language Proficiency}
+\begin{itemize} \itemsep -2pt
+\item Skilled: MATLAB
+\item Proficient: Python (particularly scientifc computing packages like Numpy/SciPy)
+\item Acceptable: C/C++/Fortran
+\end{itemize}
+%----------------------------------------------------------------------------------------
+%	PAPERS
+%----------------------------------------------------------------------------------------
+\section{PUBLICATIONS}
+
+J.J. Bevan, D.J. Willis. "A High-Order Conservative Eulerian Simulation Method for Vortex Dominated Flows." 46th AIAA Fluid Dynamics Conference. 2016.
+
+%----------------------------------------------------------------------------------------
+%	PATENTS
+%----------------------------------------------------------------------------------------
+\section{PATENTS} 
+
+Sizer, C; Bevan, J; Olson K. 2012. Formulation and Processing of a High-Protein, Isotonic Beverage For the Treatment of Metabolic Disorders. Patent Pending.
+ 
+ %----------------------------------------------------------------------------------------
+%	EXTRA-CURRICULAR ACTIVITIES SECTION
+%----------------------------------------------------------------------------------------
+
+\section{AWARDS \& \\ACTIVITIES} 
+
+Andrew \& Shana Laursen Fellowship, UIUC, 2016\\
+Society for Industrial and Applied Mathematics (SIAM), UIUC Chapter Officer, 2016
+Craig T. Douglas Undergraduate Research Award, UMass Lowell, 2013\\
+Certified Associate in Project Management, Project Mgmt. Institute (PMI), 2014\\
+Founder, Near Space High-Altitude Balloon Club, 2008-2012\\
+Eagle Scout, Boy Scouts of America, 2004
+ 
+%----------------------------------------------------------------------------------------
+%	PROFESSIONAL EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+\section{EMPLOYMENT}
+
+{\bf Engineer /  International Project Manager} \hfill Dec. 2011 to Feb. 2016\\
+Cambrooke Therapeutics Inc.; Ayer, MA
+\begin{itemize} \itemsep -2pt
+\item Designed, built, and optimized thermo-fluid processing systems.
+\item Designed, built, and integrated custom hardware and software automation systems for aseptic clinical metabolics production conforming to FDA standards.
+\item Implemented regulatory compliant products and procedures (e.g. 21 CFR 11 compliant electronic records system, 21 CFR 113/114 Thermal Processing, etc).
+\item Managed projects including international market expansion, logistics, regulatory acceptance and compliance, import/export, supply chain, and international distributor management.
+\item Responsible for new equipment/instrumentation installation and validation.
+\end{itemize}
+
+ \vskip -.5em
+
+{\bf Engineer} \hfill Nov. 2010 to Dec. 2011\\
+JSB Industries; Lawrence, MA
+\begin{itemize} \itemsep -2pt
+\item Troubleshooted and improved the safety, reliability, and efficiency of processing and packaging equipment and instrumentation.
+\item Created data-driven, predictive preventative maintenance scheduling system.
+\item Improved production throughput and uptime, minimized production waste.
+\end{itemize}
+
+\end{resume}
+\end{document}

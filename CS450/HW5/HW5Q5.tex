@@ -1,0 +1,61 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\newcommand{\bm}[1]{% inline column vector
+	\begin{bmatrix}#1\end{bmatrix}%
+}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW5 Q5 - CS450}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.3in
+
+\section*{ Use the method of undetermined coefficients to determine the nodes and weight for a three-point Chebyshev quadrature rule on the interval $[-1,1]$.}
+
+A three point quadrature rule must satisfy the following fo r the method of undetermined coefficients:
+$$\bm{ 1 & 1 &1 \\ x_1 & x_2 & x_3 \\ x_1^2 & x_2^2 & x_3^2}
+    \begin{bmatrix} w_1 \\ w_2 \\ w_3 \end{bmatrix} =
+    \begin{bmatrix} a-b \\ (a^2-b^2)/2 \\ (a^3-b^3)/3 \end{bmatrix}$$
+    
+For a constant set of weights $w_1 = w_2 = w_3$ the constant part must then satisfy:
+$$w_1 +w_2 +w_3 = 3w = 1-(-1) \rightarrow w=2/3$$
+
+We now have two equations and three unknowns to satisfy for $x_n$, so we add the additional criteria that the nodes will be symmetric in the interval; that is $x_1 = -x_3$. The two equations to satisfy are now:
+$$2/3 \,(x_1 + x_2 - x_1) = 0 \rightarrow x_2 = 0$$
+$$2/3 \,(x_1^2 + x_2^2 +x_1^2) = 2/3 \rightarrow 2/3 \,(2x_1^2 + 0^2) =2/3 \rightarrow x_1 = 0.5^{1/2} \approx 0.707$$
+
+so $x = \{-0.707, 0, 0.707\}$, $w = \{2/3, 2/3, 2/3\}$
+
+\section*{What is the degree of the resulting rule?}
+We can determine the degree by seeing the highest order polynomial it exactly integrates. Consider a lower order test case:
+$$ f(x) = 4x^3+4x^2 $$
+$$ \int f(x) =  x^4 + 4/3 x^3 \rightarrow \int_{-1}^1 f(x) = 8/3 \approx 2.666666...$$
+If we apply our quadrature rule, we get
+$$ w \sum_i f(x_i) = 2.666666666666667$$
+which agrees within machine precision of the exact answer.
+Looking at the lowest order example polynomial we don't integrate exactly:
+$$ f(x) = 5x^4+4x^2 $$
+$$ \int f(x) =  x^5 + 4/3 x^3 \rightarrow \int_{-1}^1 f(x) = 14/3 \approx 4.666666...$$
+If we apply our quadrature rule, we get
+$$ w \sum_i f(x_i) = 4.3333333333333339$$
+indicating that this quadrature is not exact for 4th order polynomials; therefore the degree of the resulting rule is 3rd order.
+
+
+\end{document}

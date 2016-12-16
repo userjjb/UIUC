@@ -1,0 +1,51 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - Semester Project Proposal - CS450}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.2in
+
+\section*{Introduction}
+Direct solution of the Navier-Stokes equations that describe fluid dynamics is impractical for many problems and where possible simplifications should be made; one such possibility is for vortex dominated flows. It is possible to recast Navier-Stokes from a primitive variable form ($u,v,p$) to a velocity-vorticity ($u,v,\omega$) form. This has several advantages: explicit conservation of vorticity, elimination of pressure terms (for incompressible flows), and reduction of required simulated degrees of freedom to just those that form the vorticity support.
+
+\section*{Background}
+A high-order Eulerian method has been proposed in the past$^1$ that uses this velocity vorticity form, building upon previous low-order methods that takes a similar approach$^2$. One challenge in taking an Eulerian approach revolves around the inversion of the Biot-Savart integral to solve for the velocity field induced by the vorticity field which takes the form:
+\ben{BS} u(x^*) = \int_\Omega K(x^*,x) \times \omega(x) dx \ee
+where $x^*$ is the point we wish to evaluate the velocity, $x$ is the coordinate in regions of non-zero vorticity, and $K(x^*,x)$ is the singular Biot-Savart kernel$^3$; which for 2 dimensions is:
+\ben{BSkern} K(x^*,x) = \frac{-1}{2 \pi} \frac{x^*-x}{|x^*-x|^2} \ee
+
+For calculated velocities inside vorticity patches the integral converges, analytically speaking. However, the discrete approximation to the problem uses numerical quadrature to calculate these velocities. In this case the integral exists, but the quadrature routine may fail to converge or may converge very slowly due to the point singularity in the integrand. As an example a Gauss-Legendre type quadrature assumes the integral of a polynomial interpolant of the integrand is a fair approximation. However the singular nature of the integrand means that actually a polynomial interpolant is a poor choice.
+
+\section*{Proposed Work}
+The previously proposed high-order method used a regularization procedure that smoothed out the singularity; the regularization introduced approximation error by using a non-exact kernel which was more readily integrated numerically. The proposed work for this project is to calculate and use a modified quadrature scheme that accurately integrates the singular kernel. This will be accomplished by constructing a set of modified quadrature weights that exactly integrate the specific kernel. The local/global spatial nature of these quadrature weights will be assessed to determine the computational impact of the modified quadrature. Additionally the improvement of the order of convergence of the overall method will be examined due to the effect of the reduction in the approximation error thanks to the use of the exact Biot-Savart kernel.
+
+\begin{thebibliography}{9}% maximum number of references (for label width)
+%Me!
+\bibitem{Bevan}
+Bevan, J.J., and Willis, D.J., \textit{A High-Order Conservative Eulerian Simulation Method for Vortex Dominated Flows.} 46th AIAA Fluid Dynamics Conference. 2016.
+\bibitem{Brown}
+Brown R.E., "Rotor Wake Modeling for Flight Dynamic Simulation of Helicopters," \textit{AIAA Journal}, Vol. 38, No. 1, 2000, pp. 57-63.
+\bibitem{BealeMajda}
+Beale, J. T., and Majda A., "High order accurate vortex methods with explicit velocity kernels," \textit{J. Comput. Phys.}, Vol. 58, No. 2, 1985, pp. 188-208.
+\end{thebibliography}
+\end{document}

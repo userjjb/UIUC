@@ -1,0 +1,79 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW 4 Q1 - CS556}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.3in
+
+\hskip -.3in{\large \textit{Consider a general 6x6 tridiagonal nonsingular matrix.}}
+\bes
+  A =
+\begin{bmatrix}
+2&-1&0&0&0&0\\
+-1&2&-1&0&0&0\\
+0&-1&2&-1&0&0\\
+0&0&-1&2&-1&0&\\
+0&0&0&-1&2&-1\\
+0&0&0&0&-1&2
+\end{bmatrix}
+\ees
+
+\section*{What can be said about its ILU(0) factorization (when it exists)?}
+By definition the zero pattern of L and U (from ILU(0)) will match that of A. More interesting to note though is that the L and U resulting from ILU(0) will be the same as the L and U resulting from a full LU factorization. This is a consequence of the tridiagonal nature of A; a full LU factorization of a tridiagonal matrix is confined to the diagonal and sub-diagonal for L and diagonal and super-diagonal for U. There is no fill-in that exists for the ILU(0) factorization of A to zero, all non-zero terms of the factorization already reside within the non-zero pattern of A.
+
+\section*{Now apply the permuation $\pi=[1,3,5,2,4,6]$ to the matrix symmetrically (i.e., both rows and columns are permuted).}
+\bes
+  A_{\pi \pi} =
+\begin{bmatrix}
+2&0&0&-1&0&0\\
+0&2&0&-1&-1&0\\
+0&0&2&0&-1&-1\\
+-1&-1&0&2&0&0&\\
+0&-1&-1&0&2&0\\
+0&0&-1&0&0&2
+\end{bmatrix}
+\ees
+
+\section*{What is the sparsity pattern of the permuted matrix?}
+See above. The symmetric permutation permutes the diagonal terms, but keeps them confined to the diagonal. The sub/super-diagonals have been moved elsewhere in the matrix, but the resultant matrix (and sparsity pattern) is still symmetric.
+
+\section*{Show the locations of the fill-in elements in the ILU(0) factorization of the permuted matrix.}
+The ILU(0) factorization has the same zero pattern as $A_{\pi\pi}$, the fill-in elements that would have resulted from a full LU factorization can be collected in a matrix R (here L and U are the ILU(0) factorizations):
+\bes A=LU-R \ees
+The fill-in elements of R in the example matrix A chosen are:
+\bes
+R=
+\begin{bmatrix}
+ 0&  0&  0&  0&  0&0 \\ 
+ 0&  0&  0&  0&  0&0 \\ 
+ 0&  0&  0&  0&  0&0 \\ 
+ 0&  0&  0&  0&  -0.5&0 \\ 
+ 0&  0&  0&  -0.5&  0&-0.5 \\ 
+ 0&  0&  0&  0&  -0.5&0 
+\end{bmatrix}
+\ees
+\end{document}
+
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[width=0.6\textwidth]{Unrolled.PNG}
+%\caption{\label{fig:unrolled}"Unrolled" ring, coincident nodes at either end.}
+%\end{figure}
