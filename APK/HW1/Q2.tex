@@ -1,0 +1,90 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=0.5in, bottom=0.75in, left=0.9in, right=0.9in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW1Q4 - CS598APK}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.4in
+
+\vskip 0.1in
+\section*{Use induction and the result from the previous part to show
+that applying the operator
+$$
+  D^{-1}\phi(x) :=\int_0^x \phi(y)dy
+$$
+$n$ times is the same as the single application of the following operator
+$$
+\underbrace{(D^{-1}\circ D^{-1} \circ \cdots \circ D^{-1})}_{\text{$n$ times}}\phi
+= D^{-n}\phi(x) =\frac1{(n-1)!}\int_0^x (x-y)^{n-1}\phi(y)dy
+$$}
+
+Base case: For $n=1$  the proposed statement holds:
+$$
+\frac1{(n-1)!}\int_0^x (x-y)^{n-1}\phi(y)dy = \int_0^x \phi(y)dy
+$$
+$$
+\frac1{(1-1)!}\int_0^x (x-y)^{1-1}\phi(y)dy = \int_0^x \phi(y)dy
+$$
+$$
+\frac11\int_0^x 1 \, \phi(y)dy = \int_0^x \phi(y)dy
+$$
+
+Inductive step: Assume the proposed statement holds for $n$, then for $n+1$
+$$
+D^{-(n+1)}\phi(x) = (D^{-1} \circ D^{-n}) \phi(x) =
+\int_0^x
+\frac1{(n-1)!}\int_0^z (z-y)^{n-1}\phi(y) \, dy
+\, dz.
+$$
+
+Examining the domain of integration we can make an appropriate change of order of integration to obtain
+$$
+D^{-(n+1)}\phi(x) = \frac1{(n-1)!}
+\int_0^z
+\int_y^x (z-y)^{n-1}\phi(y) \, dz
+\, dy
+$$
+and then pull out $\phi(y)$ from the inner integral
+$$
+D^{-(n+1)}\phi(x) = \frac1{(n-1)!}
+\int_0^z \phi(y)
+\int_y^x (z-y)^{n-1} \, dz
+\, dy.
+$$
+
+Now we can evaluate the inner integral to obtain
+$$
+D^{-(n+1)}\phi(x) = \frac1{(n-1)!}
+\int_0^z \phi(y)
+\frac1n(x-y)^n
+\, dy.
+$$
+
+Rearranging yields
+$$
+D^{-(n+1)}\phi(x) = \frac1{n!}
+\int_0^z (x-y)^n \phi(y)\, dy.
+$$
+
+and shows that the inductive hypothesis holds.
+
+\end{document}

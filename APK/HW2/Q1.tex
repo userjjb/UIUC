@@ -1,0 +1,68 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=0.5in, bottom=0.75in, left=0.9in, right=0.9in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW2Q1 - CS598APK}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.4in
+
+\vskip 0.1in
+\section*{Design an algorithm to solve the linear least squares problem... Write an additional version of your algorithm that also makes use of a a row interpolative decomposition $Q \approx PQ_{(j,:)}$}
+
+We can compute the solution to the least squares problem $Ax \approx b$ if we have the SVD of A by:
+$$x = V\Sigma^+U^Tb$$
+where $\Sigma^+$ has the reciprocals of the singular values.
+
+For our case we have the special form $QB \approx b$, so:
+
+Step 1: Rearrange as $B \approx Q^T b$
+
+Step 2: Compute SVD of B
+
+Step 3: Compute $x$ from SVD terms
+\\ \\
+We can do better than this if we use the row ID of $Q$. We know that this subset is also appropriate for A, $A \approx P A_{(j,:)}$. So our steps become:
+
+Step 1: Compute $\bar{Q}\bar{R}$ of $A_{(j,:)}$
+
+Step 2: Compute SVD of $P \bar{R}$
+
+Step 3: Used SVD to compute $x$ as shown above
+
+\section*{Find (and write down) the asymptotic complexity of each step in both of your algorithm in terms of $m,n,k$ as well as the overall complexity of the algorithm. 
+\\\\ In the full-rank case $k=n$, what is the asymptotic complexity of a solution procedure based on Householder QR? How do your algorithms compare in this case?}
+In order of steps:
+
+Alg 1: $mk, kn^2, mk + k^2$ Overall: $m^2k$
+
+Alg 2: $2n^2m, nk^2, mk^2$ Overall: $mk^2$
+\section*{Suppose the low-rank projection matrix $Q$ is not given, what is the asymptotic complexity of finding it, using the (non-adaptive) range finder, assuming $A$ is given as a dense matrix? How does this compare to the complexity of the above methods?}
+We will need to multiply k columns of a particular $\Omega$ by A, or in other words cost $mnk$. This cost is OK for the slower method that doesn't use the ID (makes the overall asymptotic cost no worse). But for the faster $mk^2$ method with ID it now becomes the dominant cost.
+
+\section*{In order to improve matters in this situation, consider replacing the matrix $\Omega$ with $\Omega'$  ...}
+a
+\section*{If $A$ is a square, low-rank matrix, show that exactly one of the following is true:\\
+-The linear system $(I-A)x=b$ has a solution $x$.\\
+-The linear system $(I-A)Ty=0$ has a solution $y$ with $y^Tb\neq0$.\\
+Hint: Show that (A) if and only if not (B).}
+
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\newcommand{\vkl}{v_{k,\ell}}
+\newcommand{\vklm}{v_{k,\ell-1}}
+\newcommand{\vklp}{v_{k,\ell+1}}
+\newcommand{\vkml}{v_{k-1,\ell}}
+\newcommand{\vkpl}{v_{k+1,\ell}}
+\newcommand{\vkmlp}{v_{k-1,\ell+1}}
+\newcommand{\vkplp}{v_{k+1,\ell+1}}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW1 Q1 - CS555}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.3in
+
+\hskip -.3in{\large \textit{Consider the leapfrog scheme given by:}}
+\be \vklp = \vklm - \frac{a h_t}{h_x} (\vkpl - \vkml) \ee
+
+\section*{Show that the leapfrog scheme is consistent with $u_t + a u_x = 0$.}
+A PDE of the form $\mathcal{L}u=f$ with finite difference scheme $\mathcal{L}_{\Delta t \Delta x}v = f$ (where u is the PDE solution and v the FD solution) is consistent if for a smooth function $\phi(x,t)$:
+\be \mathcal{L} \phi - \mathcal{L}_{\Delta t \Delta x} \phi \rightarrow 0 \; \text{as} \; \Delta t, \Delta x \rightarrow 0  \ee
+
+For the given PDE we have:
+\be \mathcal{L} \phi = \phi_t + a \phi_x \ee
+and the FD leapfrog scheme:
+\be \mathcal{L}_{\Delta t \Delta x} \phi= \frac{\phi_{k,l+1}- \phi_{k,l-1}}{2 \Delta t} + a\frac{\phi_{k+1,l}- \phi_{k-1,l}}{2 \Delta x} \ee
+
+We can expand each $\phi$ term with Taylor expansions:
+\be \phi_{k+1,l} = \phi_{k,l} + \Delta x \phi_x + \frac{1}{2}\Delta x^2 \phi_{xx} + \frac{1}{6}\Delta x^3 \phi_{xxx} +\mathcal{O}(\Delta x^4)\ee
+\be \phi_{k-1,l} = \phi_{k,l} - \Delta x \phi_x + \frac{1}{2}\Delta x^2 \phi_{xx} - \frac{1}{6}\Delta x^3 \phi_{xxx}+\mathcal{O}(\Delta x^4) \ee
+\be \phi_{k,l+1} = \phi_{k,l} + \Delta t \phi_t + \frac{1}{2}\Delta t^2 \phi_{tt} + \frac{1}{6}\Delta t^3 \phi_{ttt}+\mathcal{O}(\Delta t^4) \ee
+\be \phi_{k,l-1} = \phi_{k,l} - \Delta t \phi_t + \frac{1}{2}\Delta t^2 \phi_{tt} - \frac{1}{6}\Delta t^3 \phi_{ttt}+\mathcal{O}(\Delta t^4) \ee
+
+Substituting into Eqn. 4, adding and canceling terms from the expansions yields:
+\be \mathcal{L}_{\Delta t \Delta x} \phi = \phi_t + a\phi_x + \frac{1}{6} \Delta t^2 \phi_{ttt} + a\frac{1}{6} \Delta x^2 \phi_{xxx} + \mathcal{O}(\Delta x^3) + \mathcal{O}(\Delta t^3)\ee
+so:
+\be \mathcal{L} \phi - \mathcal{L}_{\Delta t \Delta x} \phi = \frac{1}{6} \Delta t^2 \phi_{ttt} + a\frac{1}{6} \Delta x^2 \phi_{xxx} + \mathcal{O}(\Delta x^3) + \mathcal{O}(\Delta t^3) \rightarrow 0   \; \text{as} \; \Delta t, \Delta x \rightarrow 0\ee
+and therefore the scheme is consistent.
+
+
+\end{document}
+
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[width=0.6\textwidth]{Unrolled.PNG}
+%\caption{\label{fig:unrolled}"Unrolled" ring, coincident nodes at either end.}
+%\end{figure}

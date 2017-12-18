@@ -1,0 +1,79 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=0.5in, bottom=0.75in, left=0.9in, right=0.9in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Fourier Transform modified kernel - November}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.4in
+
+\vskip 0.1in
+\section*{Take Fourier transform of $\frac{1}{\sqrt{r^2+a^2}}$:}
+
+\begin{align*}
+\int_{-\infty}^\infty\int_{-\infty}^\infty\int_{-\infty}^\infty \frac{1}{\sqrt{r^2+a^2}}e^{-2 \pi i\vec k\cdot \vec r }\,dx\,dy\,dz&=
+\int_0^\infty\int_0^\pi \int_0^{2\pi} \frac{e^{-2 \pi ikr\cos(\theta)}}{\sqrt{r^2+a^2}}\,r^2\,\sin(\theta)\,d\phi\,d\theta\,dr\\\\
+&=2\pi \int_0^\infty \int_0^\pi \frac{e^{-2 \pi ikr\cos(\theta)}}{\sqrt{r^2+a^2}}\,r^2\,\sin(\theta)\,d\theta\,dr\\\\
+&=2\pi \int_0^\infty \frac{r^2}{\sqrt{r^2+a^2}} \int_0^\pi  e^{-2 \pi ikr\cos(\theta)}\sin(\theta)\,d\theta\,dr\,\\\\
+&=2\pi \int_0^\infty \frac{r^2}{\sqrt{r^2+a^2}}\left(\frac{\sin(2\pi kr)}{\pi k r}\right)\,dr\\\\
+&=\frac{2}{k} \int_0^\infty \frac{r}{\sqrt{r^2+a^2}}\,\sin(2\pi kr)\,dr
+\end{align*}
+We now find that the integral fails to converge, since $\frac{r}{\sqrt{r^2+a^2}} \to 1$ as $r \to \infty$, and so $\frac{r}{\sqrt{r^2+a^2}} \sin(2\pi kr)$ is undamped. However, we expect that a value for the integral exists since one exists for $\int_0^\infty sin(2 \pi kr) \,dr = 1/2 \pi k $, the ``physicist's point charge'' example. For this example they introduce a screening term $e^{-br}, b>0$ in the integral which artificially damps the integrand and forces it to converge, then they take the limit as $b\rightarrow 0$. Apply same principle here:
+
+\begin{align*}
+\frac{2}{k} \int_0^\infty \frac{r}{\sqrt{r^2+a^2}}\,\sin(2\pi kr)\,dr &= \lim_{b \to 0}\, \frac{2}{k} \int_0^\infty \frac{r}{\sqrt{r^2+a^2}}\,e^{-b r}\sin(2\pi kr)\,dr\\\\
+&= \lim_{b \to 0}\, \frac{2}{k} \int_0^\infty \frac{r}{\sqrt{r^2+a^2}}\, \frac{( e^{(b - 2 \pi k i)r} - e^{-(b + 2 \pi k i)r})}{2 i}\, dr\\\\
+&= \frac{2}{\pi k^2} + \frac{i \pi a}{2k} (Y_1(-i 2 \pi a k)-Y_1(i 2 \pi a k))\\\\
+&= \frac{2}{\pi k^2} - \frac{\pi a}{k} \operatorname{Im}Y_1(i 2 \pi a k)
+\end{align*}
+
+If we realize that $\lim_{a \to 0} a Y_1(i 2 \pi a k) = i/\pi^2 k$, we see that the limit of the Fourier transform for $a \to 0$ is simply $1/\pi k^2$, and we recover the Fourier transform of $1/r$ (i.e $1/\sqrt{r^2 + a^2}$ for $a=0$).
+
+\vskip 0.1in
+\section*{An alternate form:}
+While the previous solution seems to reduce to the expected case for $a=0$, Mathematica/Fourier transform tables are unable to verify that the inverse Fourier transform recovers $1/\sqrt{r^2 + a^2}$. I managed to find another solution form of the Fourier transform that is readily verifiable, however it requires a leap of faith at one step that could do with some additional rigor.
+
+We could integrate by parts to try and get an integrand that is better behaved, with the troublesome term being $\frac{r}{\sqrt{r^2+a^2}}$.
+
+$$
+u = \frac{r}{\sqrt{r^2+a^2}} \;\; u' = \frac{a^2}{(r^2+a^2)^{3/2}}\\\\
+$$
+$$
+v' = \sin{2 \pi k r} \;\; v = \frac{- \cos{2 \pi k r}}{2 \pi k}
+$$
+$$
+\int_0^\infty uv' \,dr = uv\Big|_0^\infty - \int_0^\infty u' v \,dr
+$$
+\begin{align*}
+\frac{2}{k} \int_0^\infty \frac{r}{\sqrt{r^2+a^2}}\,\sin(2\pi kr)\,dr &= \frac{2}{k}\left( \int_0^\infty \frac{a^2}{(r^2+a^2)^{3/2}}\, \frac{\cos{2 \pi k r}}{2 \pi k}\,dr - 
+\frac{r}{\sqrt{r^2+a^2}} \, \frac{ \cos{2 \pi k r}}{2 \pi k} \Big|_0^\infty \right) \\\\
+&=\frac{2}{k} \left( a K_1(2 \pi a k) - \lim_{r \to \infty}\left( \frac{r}{\sqrt{r^2+a^2}} \frac{\cos{2 \pi k r}}{2 \pi k} \right) \right) 
+\end{align*}
+
+The issue is the $\lim_{r \to \infty}\left( \frac{r}{\sqrt{r^2+a^2}} \cos{2 \pi k r}\right)$ which is in $[-1,1]$, but is otherwise unspecified. However, the limit  in $r \to \infty$ should be a value such that the resulting transform reduces to $1/\pi k^2$ when $a \to 0$, recovering the transform of $1/r$. If we notice that  $\lim_{a \to 0} a K_1(2 \pi a k) = 1/2 \pi k$, then we can see that $\lim_{r \to \infty}\left( \frac{r}{\sqrt{r^2+a^2}} \cos{2 \pi k r}\right)$ must be 0 for the transform to recover the desired behavior for $a \to 0$.
+
+Indeed, if we now test the proposed transform by taking the inverse Fourier transform, we find:
+$$
+2\pi \int_0^\infty \frac{2a}{k} K_1(2 \pi a k) \left(\frac{\sin(2\pi kr)}{\pi k r}\right)\,dk = \frac{1}{\sqrt{r^2+a^2}}\\\\
+$$
+
+
+\end{document}

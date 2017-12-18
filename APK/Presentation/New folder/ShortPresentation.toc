@@ -1,0 +1,13 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Motivation}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{QBX}{3}{0}{1}
+\beamer@subsectionintoc {1}{3}{QBX Considerations}{4}{0}{1}
+\beamer@subsectionintoc {1}{4}{Mesh Interaction}{5}{0}{1}
+\beamer@subsectionintoc {1}{5}{Mesh Interaction}{6}{0}{1}
+\beamer@subsectionintoc {1}{6}{FMM-QBX Interaction}{7}{0}{1}
+\beamer@subsectionintoc {1}{7}{Corrected FMM Contributions}{8}{0}{1}
+\beamer@subsectionintoc {1}{8}{QBX Contributions}{9}{0}{1}
+\beamer@subsectionintoc {1}{9}{QBX-FMM Overlap Corrections}{10}{0}{1}
+\beamer@subsectionintoc {1}{10}{Result of Combinations}{11}{0}{1}

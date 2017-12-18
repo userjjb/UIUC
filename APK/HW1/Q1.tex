@@ -1,0 +1,80 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[top=0.5in, bottom=0.75in, left=0.9in, right=0.9in]{geometry}
+\usepackage[small]{titlesec}
+
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ben}[1]{\begin{equation}\label{#1}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+
+\begin{document}
+
+\begin{flushright}
+{\Large Josh Bevan - HW1Q3 - CS598APK}
+\end{flushright}
+\vskip -0.1in
+\hrule
+\vskip 0.4in
+
+\vskip 0.1in
+\section*{
+Show that the combined
+operator $G(F\phi)(x)$ can be recast in the same form as the above two,
+i.e.
+$$
+(G\circ F) \phi(x):=\int_a^x k_3(x,y) \phi(y) \, d y.
+$$}
+
+Given two integral operators
+$$  F \phi(z):=\int_a^z k_1(z,y) \phi(y) \, d y$$\\ $$ G \phi(x):=\int_a^x k_2(x,z) \phi(z) \, d z $$
+ we can form the composition:
+$$
+(G\circ F) \phi(x) = \int_a^x k_2(x,z) 
+\int_a^z k_1(z,y) \phi(y) d y \;
+ d z.
+$$
+We are free to move $k_2(x,z)$ inside the inner integral since it is not a function of $z$.
+$$
+(G\circ F) \phi(x) = \int_a^x  
+\int_a^z k_2(x,z) \, k_1(z,y) \phi(y) \, d y \;
+ d z.
+$$
+
+We can then exchange the order of integration to obtain
+$$
+(G\circ F) \phi(x) = \int_a^z  
+\int_y^x k_2(x,z) \, k_1(z,y) \phi(y) \, d z \;
+ d y.
+$$
+
+We can then remove $\phi(z)$ from the inner integral since it does not depend on $y$
+\ben{eq:a}
+(G\circ F) \phi(x) = \int_a^z \phi(y) 
+\int_y^x k_2(x,z) \, k_1(z,y) \, d z \;
+ d y.
+\ee
+
+We can now see that the inner integral has the form of $f(x,y)$ thanks to the integration in $z$.
+
+\vskip 0.1in
+\section*{Give an expression for the kernel $k_3$.}
+If we think of this inner integral as another possible kernel function
+$$
+k_3(x,y) = \int_y^x k_2(x,z) \, k_1(z,y) \, d z
+$$
+
+and make the appropriate substitution in (\ref{eq:a}) we obtain
+$$
+(G\circ F) \phi(x) = \int_a^x k_3(x,y) \phi(y) \; d y.
+$$
+
+\end{document}
